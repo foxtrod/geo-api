@@ -14,7 +14,7 @@ class GeolocationsController < ApplicationController
   def destroy
     @geolocation = Geolocation.find_by('query = ? OR ip = ?', params[:query], params[:query])
 
-    return render json: { error: 'not found' } unless @geolocation
+    return render json: { error: 'not found' }, status: :not_found unless @geolocation
 
     if @geolocation.destroy
       render json: :ok
@@ -22,10 +22,4 @@ class GeolocationsController < ApplicationController
       render json: :error
     end
   end
-
-  private
-    # Only allow a list of trusted parameters through.
-    def geolocation_params
-      params.require(:geolocation).permit(:query)
-    end
 end

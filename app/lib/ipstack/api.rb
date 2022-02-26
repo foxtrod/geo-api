@@ -18,12 +18,6 @@ module Ipstack
       raise RequestError, data['error']['info'] if data['error']
 
       parse(data)
-      #dummy data
-      # Response.new(ip: "123.123.123.123",
-      #              country_name: "China",
-      #              city: "Beijing",
-      #              latitude: 39.91175842285156,
-      #              longitude: 116.37922668457031)
     end
 
     private
